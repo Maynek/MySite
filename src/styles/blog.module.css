@@ -1,0 +1,21 @@
+.head h1 {
+    margin:8px 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height : 1.5em;
+}
+
+.head p {
+    margin:8px 0px;
+    line-height : 1.5em;
+}
+
+.article p {
+    margin:24px 0px 8px 0px;
+    line-height : 2;
+}
+
+.article img {
+    margin:8px 0px;
+    max-width: 100%;
+}
