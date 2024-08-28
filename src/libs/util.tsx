@@ -8,10 +8,10 @@ const BASE_GLOSSARY_SITE_PATH:string  = '/novel/[novelId]/note';
 const BASE_NOTE_SITE_PATH:string      = '/novel/[novelId]/note/[noteId]';
 
 const BASE_DATA_URL = process.env.NEXT_PUBLIC_DATA_URL;
-const BASE_INDEX_DATA_PATH: string    = BASE_DATA_URL + '[novelId]/out/site/_index.json';
-const BASE_EPISODE_DATA_PATH: string  = BASE_DATA_URL + '[novelId]/out/site/[episodeId].json';
-const BASE_GLOSSARY_DATA_PATH: string = BASE_DATA_URL + '[novelId]/out/site/note/_glossary.json';
-const BASE_NOTE_DATA_PATH: string     = BASE_DATA_URL + '[novelId]/out/site/note/[noteId].json';
+const BASE_INDEX_DATA_PATH: string    = BASE_DATA_URL + '[novelId]/_index.json';
+const BASE_EPISODE_DATA_PATH: string  = BASE_DATA_URL + '[novelId]/[episodeId].json';
+const BASE_GLOSSARY_DATA_PATH: string = BASE_DATA_URL + '[novelId]/note/_glossary.json';
+const BASE_NOTE_DATA_PATH: string     = BASE_DATA_URL + '[novelId]/note/[noteId].json';
 
 export const getIndexSitePath = (
   novelId:string,
