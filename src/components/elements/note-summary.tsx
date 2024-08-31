@@ -14,17 +14,10 @@ import LoadError from '@/components/elements/load-error'
 export default function NotesvelSummary({
   novelId,
   noteId,
-  onClose,
 } : {
   novelId: string
   noteId: string
-  onClose?:() => void
 }) {
-
-  const clickClose = () => {
-    if (onClose) onClose();
-  }
-
   const shouldFetch = novelId && noteId;
   const path = getNoteDataPath(novelId, noteId);
   const {data, error, isLoading} = useSWR(shouldFetch ? path : null);
@@ -35,12 +28,7 @@ export default function NotesvelSummary({
     return ( <LoadError /> );
   } else {
     return (
-      <div className="flex flex-col h-full">
-        <div className="text-right">
-          <button type="button" onClick={clickClose} >
-            <AiFillCloseCircle size={24} color={'#dc2626'}/>
-          </button>
-        </div>
+      <>
         <div className="text-center mb-6">
           <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
         </div>
@@ -57,7 +45,7 @@ export default function NotesvelSummary({
             詳細を読む
           </Link>
         </div>
-      </div>
+      </>
     );
   }
 } 

@@ -4,6 +4,7 @@
 //--------------------------------
 'use client'
 import { useState, useRef }  from "react";
+import {AiFillCloseCircle} from "react-icons/ai"
 import EpisodeBody from '@/components/elements/episode-body'
 import WikipediaSummary from '@/components/elements/wikipedia-summary'
 import NoteSummary from '@/components/elements/note-summary'
@@ -38,7 +39,7 @@ export default function EpisodeContainer({
   };
 
   //ダイアログを閉じる
-  const closeNote = () => {
+  const closeDialog = () => {
     dialogRef.current?.close();
     setWikipediaVisible(false);
     setNoteVisible(false);
@@ -59,8 +60,15 @@ export default function EpisodeContainer({
           sm:mx-auto sm:max-w-xl 
         `}
       >
-        { wikipediaVisible && <WikipediaSummary title={wikipediaTitleState} onClose={closeNote}/> }
-        { noteVisible && <NoteSummary novelId={novelId} noteId={noteIdState} onClose={closeNote}/> }
+        <div className="flex flex-col h-full">
+          <div className="text-right">
+            <button type="button" onClick={closeDialog}>
+              <AiFillCloseCircle size={24} color={'#dc2626'}/>
+            </button>
+          </div>
+          { wikipediaVisible && <WikipediaSummary title={wikipediaTitleState}/> }
+          { noteVisible && <NoteSummary novelId={novelId} noteId={noteIdState}/> }
+        </div>  
       </dialog>
     </>
   );
