@@ -41,24 +41,22 @@ export default function ModalDialog({
   }
 
   return (
-    <>
-      <dialog
-        ref={dialogRef}
-        className={`
-          p-2 w-4/5 h-3/5 rounded hidden-scrollbar
-          backdrop:bg-gray-900 backdrop:bg-opacity-50 backdrop:backdrop-blur
-          sm:mx-auto sm:max-w-xl 
-        `}
-      >
-          <div className="h-full relative">
-            <div className="absolute top-0 right-0 text-right ">
-              <button type="button" onClick={closing}>
-                <AiFillCloseCircle size={24} color={'#dc2626'}/>
-              </button>
-            </div>
-            {children}
-          </div>
-      </dialog>
-    </>
+    <dialog
+      ref={dialogRef}
+      className={`
+        p-2 w-4/5 h-3/5 rounded hidden-scrollbar
+        backdrop:bg-gray-900 backdrop:bg-opacity-50 backdrop:backdrop-blur
+        sm:mx-auto sm:max-w-xl 
+      `}
+    >
+      <div className="h-full relative">
+        <div className="absolute top-0 right-0 text-right ">
+          <button type="button" onClick={closing}>
+            <AiFillCloseCircle size={24} color={'#dc2626'}/>
+          </button>
+        </div>
+        {children}
+      </div>
+    </dialog>
   );
 }
