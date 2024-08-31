@@ -6,7 +6,6 @@
 import useSWR from 'swr';
 import parse from 'html-react-parser';
 import Link from 'next/link'
-import {AiFillCloseCircle} from "react-icons/ai"
 import { getNoteSitePath, getNoteDataPath} from '@/libs/util'
 import Loading from '@/components/elements/loading'
 import LoadError from '@/components/elements/load-error'
@@ -28,7 +27,7 @@ export default function NotesvelSummary({
     return ( <LoadError /> );
   } else {
     return (
-      <>
+      <div className="flex flex-col h-full">
         <div className="text-center mb-6">
           <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
         </div>
@@ -45,7 +44,7 @@ export default function NotesvelSummary({
             詳細を読む
           </Link>
         </div>
-      </>
+      </div>
     );
   }
 } 

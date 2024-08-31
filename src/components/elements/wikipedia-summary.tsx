@@ -34,7 +34,7 @@ export default function WikipediaSummary({
     const page = data.query.pages[pageId];
 
     return (
-      <>
+      <div className="flex flex-col h-full">
         <div className="text-center mb-2">
           <h1 className="font-bold sm:text-2xl ">{page.title}</h1>
           <p className="mt-2 text-slate-500">（Wikipediaより引用）</p>
@@ -53,7 +53,7 @@ export default function WikipediaSummary({
             Wikipediaで全文を読む
           </Link>
         </div>
-      </>
+      </div>
     );
   }
 } 

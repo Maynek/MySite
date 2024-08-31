@@ -6,6 +6,7 @@
 import { useState, useRef }  from "react";
 import {AiFillCloseCircle} from "react-icons/ai"
 import EpisodeBody from '@/components/elements/episode-body'
+import ModalDialog from '@/components/elements/modal-dialog'
 import WikipediaSummary from '@/components/elements/wikipedia-summary'
 import NoteSummary from '@/components/elements/note-summary'
 
@@ -16,7 +17,7 @@ export default function EpisodeContainer({
   novelId: string
   episodeId: string
 }) {
-  const dialogRef = useRef<HTMLDialogElement | null>(null)
+  const [dialogOpenState, setDialogOpenState] = useState(false)
   const [wikipediaTitleState, setWikipediaTitleState] = useState('')
   const [wikipediaVisible, setWikipediaVisible] =  useState(false)
   const [noteIdState, setNoteIdState] = useState('')
@@ -27,7 +28,7 @@ export default function EpisodeContainer({
     setNoteVisible(false);
     setWikipediaVisible(true);
     setWikipediaTitleState(title);
-    dialogRef.current?.showModal();
+    setDialogOpenState(true);
   };
 
   //Noteサマリーを開く
@@ -35,13 +36,14 @@ export default function EpisodeContainer({
     setWikipediaVisible(false);
     setNoteVisible(true);
     setNoteIdState(noteId);
-    dialogRef.current?.showModal();
+    setDialogOpenState(true);
   };
 
   //ダイアログを閉じる
-  const closeDialog = () => {
-    dialogRef.current?.close();
+  const closingDialogEvent = () => {
+    setDialogOpenState(false);
     setWikipediaVisible(false);
+    setWikipediaTitleState('');
     setNoteVisible(false);
     setNoteIdState('');
   }
@@ -52,24 +54,10 @@ export default function EpisodeContainer({
         novelId={novelId} episodeId={episodeId}
         onClickWikipedia={openWikipedia} onClickNote={openNote}
       />
-      <dialog
-        ref={dialogRef}
-        className={`
-          p-2 w-4/5 h-3/5 rounded hidden-scrollbar
-          backdrop:bg-gray-900 backdrop:bg-opacity-50 backdrop:backdrop-blur
-          sm:mx-auto sm:max-w-xl 
-        `}
-      >
-        <div className="flex flex-col h-full">
-          <div className="text-right">
-            <button type="button" onClick={closeDialog}>
-              <AiFillCloseCircle size={24} color={'#dc2626'}/>
-            </button>
-          </div>
-          { wikipediaVisible && <WikipediaSummary title={wikipediaTitleState}/> }
-          { noteVisible && <NoteSummary novelId={novelId} noteId={noteIdState}/> }
-        </div>  
-      </dialog>
+      <ModalDialog isOpen={dialogOpenState} onClosing={closingDialogEvent}>
+        { wikipediaVisible && <WikipediaSummary title={wikipediaTitleState}/> }
+        { noteVisible && <NoteSummary novelId={novelId} noteId={noteIdState}/> }          
+      </ModalDialog> 
     </>
   );
 }
