@@ -26,7 +26,8 @@ export default async function Article(props: Props) {
   }
   return (
     <Common>
-	  <div className={styles.head}>
+      <div className="animate-fade-in">
+	    <div className={styles.head}>
         <Image
           src={article.eyecatch?.url ?? "/no-image.png"}
           alt="アイキャッチ"
@@ -37,10 +38,11 @@ export default async function Article(props: Props) {
         <h1>{article.title}</h1>
         <p>{article.createdAt}</p>
       </div>
-	  <hr />
+	    <hr />
       <div className={styles.article}>
         {parse(article.content)}
-	  </div>
+	    </div>
+    </div>
     </Common>
   );
 }

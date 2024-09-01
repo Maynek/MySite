@@ -8,6 +8,7 @@ export default function Home() {
 	const { contents } = use(getArticles());
 	return (
 		<Common>
+		  <div className="animate-fade-in">
 		  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-3/4 mx-auto">
 			{contents.map((article) => (
 				<article className="flex flex-col shadow p-4" key={article.id}>
@@ -23,6 +24,7 @@ export default function Home() {
 					</Link>
 				</article>
 			))}
+		  </div>
 		  </div>
 		</Common>
 	);
