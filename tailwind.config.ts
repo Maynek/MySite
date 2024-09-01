@@ -13,6 +13,21 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        "fade-in": "fade-in 0.6s ease-out   both",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": {
+            filter: "blur(6px)",
+            opacity: "0",
+          },
+          to: {
+            filter: "blur(0px)",
+            opacity: "1",
+          },
+        },
+      },
     },
   },
   plugins: [],

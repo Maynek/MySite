@@ -94,7 +94,7 @@ export default function EpisodeBody({
     const nextPath = data.nextId ? getEpisodeSitePath(novelId, data.nextId) : null;
 
     return (
-      <div className="flex flex-col h-full">
+      <div className="animate-fade-in flex flex-col h-full">
         <div className="my-6">
           <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
         </div>
