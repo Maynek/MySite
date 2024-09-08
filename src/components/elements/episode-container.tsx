@@ -3,8 +3,7 @@
 // This software is released under the MIT License.
 //--------------------------------
 'use client'
-import { useState, useRef }  from "react";
-import {AiFillCloseCircle} from "react-icons/ai"
+import { useState }  from "react";
 import EpisodeBody from '@/components/elements/episode-body'
 import ModalDialog from '@/components/elements/modal-dialog'
 import WikipediaSummary from '@/components/elements/wikipedia-summary'
