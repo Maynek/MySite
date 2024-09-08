@@ -8,6 +8,7 @@ import parse, {DOMNode, domToReact} from 'html-react-parser';
 import { getIndexSitePath, getEpisodeSitePath, getEpisodeDataPath } from '@/libs/util'
 import Loading from '@/components/elements/loading'
 import LoadError from '@/components/elements/load-error'
+import AnimatePage from '@/components/elements/animate-page'
 import EpisodePagination from '@/components/elements/episode-pagination'
 
 export default function EpisodeBody({
@@ -94,20 +95,22 @@ export default function EpisodeBody({
     const nextPath = data.nextId ? getEpisodeSitePath(novelId, data.nextId) : null;
 
     return (
-      <div className="animate-fade-in flex flex-col h-full">
-        <div className="my-6">
-          <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
+      <AnimatePage>
+        <div className="flex flex-col h-full">
+          <div className="my-6">
+            <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
+          </div>
+          <div className="text-center mb-6">
+            <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
+          </div>
+          <div className="flex-1 leading-loose">
+            {parse(data.body, {replace})}
+          </div>
+          <div className="my-6">
+            <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
+          </div>
         </div>
-        <div className="text-center mb-6">
-          <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
-        </div>
-        <div className="flex-1 leading-loose">
-          {parse(data.body, {replace})}
-        </div>
-        <div className="my-6">
-          <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
-        </div>
-      </div>
+      </AnimatePage>
     );
   }
 } 

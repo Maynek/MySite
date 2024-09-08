@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import parse from "html-react-parser";
 import styles from "@/styles/blog.module.css"
 import Common from "@/components/layouts/common"
+import AnimatePage from '@/components/elements/animate-page'
 
 type Props = {
 	params: { articleId: string };
@@ -26,23 +27,23 @@ export default async function Article(props: Props) {
   }
   return (
     <Common>
-      <div className="animate-fade-in">
-	    <div className={styles.head}>
-        <Image
-          src={article.eyecatch?.url ?? "/no-image.png"}
-          alt="アイキャッチ"
-          width={1600}
-          height={1200}
-          className="rounded-lg object-cove"
-	    />
-        <h1>{article.title}</h1>
-        <p>{article.createdAt}</p>
-      </div>
-	    <hr />
-      <div className={styles.article}>
-        {parse(article.content)}
-	    </div>
-    </div>
+      <AnimatePage>
+	      <div className={styles.head}>
+          <Image
+            src={article.eyecatch?.url ?? "/no-image.png"}
+            alt="アイキャッチ"
+            width={1600}
+            height={1200}
+            className="rounded-lg object-cove"
+	      />
+          <h1>{article.title}</h1>
+          <p>{article.createdAt}</p>
+        </div>
+	      <hr />
+        <div className={styles.article}>
+          {parse(article.content)}
+	      </div>
+      </AnimatePage>
     </Common>
   );
 }

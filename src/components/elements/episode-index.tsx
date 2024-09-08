@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { getEpisodeSitePath, getGlossarySitePath, getIndexDataPath } from '@/libs/util'
 import Loading from '@/components/elements/loading'
 import LoadError from '@/components/elements/load-error'
+import AnimatePage from '@/components/elements/animate-page'
 
 type episode = {
   id:string;
@@ -36,7 +37,7 @@ export default function EpisodeIndex({
     return ( <LoadError /> );
   } else {
     return (
-      <div className="animate-fade-in">
+      <AnimatePage>
         <div className="mt-4 mb-8 text-center">
           <h1 className="font-bold mb-1 sm:text-2xl">{data.maintitle}</h1>
           <h2 className="font-bold sm:text-xl">{data.subtitle}</h2>
@@ -68,7 +69,7 @@ export default function EpisodeIndex({
             </li>
           </ul>          
         )}
-      </div>
+      </AnimatePage>
     );
   }
 } 
