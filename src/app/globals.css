@@ -19,6 +19,10 @@
   }
 }
 
+html {
+  overflow-y:scroll;
+}
+
 html:has(dialog[open]) {
   overflow: hidden;
 }

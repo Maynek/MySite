@@ -3,7 +3,6 @@
 // This software is released under the MIT License.
 //--------------------------------
 'use client'
-
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -12,8 +11,8 @@ export default function MotionWrapper({
 }: {
   children: React.ReactNode
 }) {
-  const pathName = usePathname()
-  
+  const pathName = usePathname();
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
