@@ -4,7 +4,7 @@
 //--------------------------------
 'use client'
 import { useState }  from "react";
-import EpisodeBody from '@/components/elements/episode-body'
+import EpisodeBody from '@/components/elements/episode/episode-body'
 import ModalDialog from '@/components/elements/modal-dialog'
 import WikipediaSummary from '@/components/elements/wikipedia-summary'
 import NoteSummary from '@/components/elements/note-summary'

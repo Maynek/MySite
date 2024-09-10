@@ -4,7 +4,7 @@
 //--------------------------------
 import Common from "@/components/layouts/common"
 import {SWRProvider} from '@/components/elements/swr-provider'
-import EpisodeContainer from '@/components/elements/episode-container'
+import EpisodeContainer from '@/components/elements/episode/episode-container'
 
 export default function EpisodePage({
   params,

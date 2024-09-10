@@ -9,7 +9,7 @@ import { getIndexSitePath, getEpisodeSitePath, getEpisodeDataPath } from '@/libs
 import Loading from '@/components/elements/loading'
 import LoadError from '@/components/elements/load-error'
 import AnimatePage from '@/components/elements/animate-page'
-import EpisodePagination from '@/components/elements/episode-pagination'
+import EpisodePagination from '@/components/elements/episode/episode-pagination'
 
 export default function EpisodeBody({
   novelId,
