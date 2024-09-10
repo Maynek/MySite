@@ -6,8 +6,8 @@
 import useSWR from 'swr';
 import parse from 'html-react-parser';
 import Link from 'next/link'
-import Loading from '@/components/elements/loading'
-import LoadError from '@/components/elements/load-error'
+import Loading from '@/components/elements/loading/loading'
+import LoadError from '@/components/elements/loading/load-error'
 
 export default function WikipediaSummary({
   title,

@@ -6,8 +6,8 @@
 import useSWR from 'swr';
 import parse, {DOMNode, domToReact} from 'html-react-parser';
 import { getIndexSitePath, getEpisodeSitePath, getEpisodeDataPath } from '@/libs/util'
-import Loading from '@/components/elements/loading'
-import LoadError from '@/components/elements/load-error'
+import Loading from '@/components/elements/loading/loading'
+import LoadError from '@/components/elements/loading/load-error'
 import AnimatePage from '@/components/elements/animate-page'
 import EpisodePagination from '@/components/elements/episode/episode-pagination'
 

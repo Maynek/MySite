@@ -7,8 +7,8 @@ import Link from 'next/link'
 import useSWR from 'swr';
 import { getEpisodeSitePath, getGlossarySitePath, getIndexDataPath } from '@/libs/util'
 import AnimatePage from '@/components/elements/animate-page'
-import Loading from '@/components/elements/loading'
-import LoadError from '@/components/elements/load-error'
+import Loading from '@/components/elements/loading/loading'
+import LoadError from '@/components/elements/loading/load-error'
 
 type episode = {
   id:string;
