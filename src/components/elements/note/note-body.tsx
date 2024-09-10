@@ -7,8 +7,8 @@ import useSWR from 'swr';
 import Link from 'next/link'
 import parse, {DOMNode, domToReact} from 'html-react-parser';
 import { getNoteDataPath } from '@/libs/util'
-import Loading from '@/components/elements/loading'
-import LoadError from '@/components/elements/load-error'
+import Loading from '@/components/elements/loading/loading'
+import LoadError from '@/components/elements/loading/load-error'
 
 export default function NoteBody({
   novelId,

@@ -7,7 +7,7 @@ import { useState }  from "react";
 import EpisodeBody from '@/components/elements/episode/episode-body'
 import ModalDialog from '@/components/elements/modal-dialog'
 import WikipediaSummary from '@/components/elements/wikipedia-summary'
-import NoteSummary from '@/components/elements/note-summary'
+import NoteSummary from '@/components/elements/note/note-summary'
 
 export default function EpisodeContainer({
   novelId,

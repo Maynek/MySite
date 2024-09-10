@@ -6,8 +6,8 @@
 import Link from 'next/link'
 import useSWR from 'swr';
 import { getNoteSitePath, getGlossaryDataPath } from '@/libs/util'
-import Loading from '@/components/elements/loading'
-import LoadError from '@/components/elements/load-error'
+import Loading from '@/components/elements/loading/loading'
+import LoadError from '@/components/elements/loading/load-error'
 
 type note = {
   id:string;
