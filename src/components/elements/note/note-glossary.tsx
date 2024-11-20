@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { getNoteSitePath, getGlossaryDataPath } from '@/libs/util'
 import Loading from '@/components/elements/loading/loading'
 import LoadError from '@/components/elements/loading/load-error'
+import AnimatePage from '@/components/elements/animate-page'
 
 type note = {
   id:string;
@@ -36,7 +37,7 @@ export default function NoteGlossary({
     return ( <LoadError /> );
   } else {
     return (
-      <>
+      <AnimatePage>
         <div className="mt-4 mb-8 text-center">
           <h1 className="font-bold mb-1 sm:text-2xl">{data.title}</h1>
         </div>
@@ -59,7 +60,7 @@ export default function NoteGlossary({
             </li>
           ))}
         </ul>
-      </>
+      </AnimatePage>
     );
   }
 } 
