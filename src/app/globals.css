@@ -32,3 +32,16 @@ html:has(dialog[open]) {
   line-height: 2;
 }
 
+h1 {
+  @apply font-bold my-2;
+  @apply sm:text-2xl;
+}
+
+h2 {
+  @apply font-bold my-2;
+  @apply sm:text-xl;
+}
+
+h3 {
+  @apply font-bold;
+}

@@ -54,7 +54,7 @@ export default function NoteBody({
         <div className="text-center mb-6">
           <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 leading-loose">
           {parse(data.summary, {replace})}
           <br/>
           {parse(data.body, {replace})}

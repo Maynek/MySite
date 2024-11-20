@@ -46,7 +46,12 @@ export default function NoteGlossary({
               <span className="font-bold sm:text-lg">{title}</span>
               <ul className="my-2 font-normal">
                 {notes?.map(({id,title}:note) => (
-                  <li key={id} className="text-sky-600 no-underline hover:text-red-600 hover:underline">
+                  <li key={id}
+                    className={`
+                      text-sky-600 no-underline leading-loose
+                      hover:text-red-600 hover:underline
+                    `}
+                  >
                     <Link href={getNoteSitePath(novelId, id)}>{title}</Link>
                   </li>
                 ))}
