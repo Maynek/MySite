@@ -3,11 +3,13 @@
 // This software is released under the MIT License.
 //--------------------------------
 'use client'
-import { useState }  from "react";
-import EpisodeBody from '@/components/elements/episode/episode-body'
-import ModalDialog from '@/components/elements/modal-dialog'
-import WikipediaSummary from '@/components/elements/wikipedia-summary'
-import NoteSummary from '@/components/elements/note/note-summary'
+import useSWR from 'swr';
+import { getIndexSitePath, getEpisodeSitePath, getEpisodeDataPath } from '@/libs/util'
+import Loading from '@/components/elements/loading/loading'
+import LoadError from '@/components/elements/loading/load-error'
+import AnimatePage from '@/components/elements/animate-page'
+import ContentsBody from '@/components/elements/contents/contents-body'
+import EpisodePagination from '@/components/elements/episode/episode-pagination'
 
 export default function EpisodeContainer({
   novelId,
@@ -16,47 +18,36 @@ export default function EpisodeContainer({
   novelId: string
   episodeId: string
 }) {
-  const [dialogOpenState, setDialogOpenState] = useState(false)
-  const [wikipediaTitleState, setWikipediaTitleState] = useState('')
-  const [wikipediaVisible, setWikipediaVisible] =  useState(false)
-  const [noteIdState, setNoteIdState] = useState('')
-  const [noteVisible, setNoteVisible] =  useState(false)
+  const shouldFetch = novelId && episodeId;
+  const path = getEpisodeDataPath(novelId, episodeId);
+  const {data, error, isLoading} = useSWR(shouldFetch ? path : null);
 
-  //Wikipediaサマリーを開く
-  const openWikipedia = (title:string) => {
-    setNoteVisible(false);
-    setWikipediaVisible(true);
-    setWikipediaTitleState(title);
-    setDialogOpenState(true);
-  };
+  if (isLoading) {
+    return ( <Loading /> );
+  } else if (!data) {
+    return ( <LoadError /> );
+  } else {
+    const indexPath = getIndexSitePath(novelId);
+    const prevPath = data.prevId ? getEpisodeSitePath(novelId, data.prevId) : null;
+    const nextPath = data.nextId ? getEpisodeSitePath(novelId, data.nextId) : null;
 
-  //Noteサマリーを開く
-  const openNote = (noteId:string) => {
-    setWikipediaVisible(false);
-    setNoteVisible(true);
-    setNoteIdState(noteId);
-    setDialogOpenState(true);
-  };
-
-  //ダイアログを閉じる
-  const closingDialogEvent = () => {
-    setDialogOpenState(false);
-    setWikipediaVisible(false);
-    setWikipediaTitleState('');
-    setNoteVisible(false);
-    setNoteIdState('');
+    return (
+      <AnimatePage>
+        <div className="flex flex-col h-full">
+          <div className="my-6">
+            <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
+          </div>
+          <div className="text-center mb-6">
+            <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
+          </div>
+          <div className="flex-1 leading-loose">
+            <ContentsBody body={data.body} novelId={novelId}/>
+          </div>
+          <div className="my-6">
+            <EpisodePagination indexPath={indexPath} prevPath={prevPath} nextPath={nextPath} />
+          </div>
+        </div>
+      </AnimatePage>
+    );
   }
-
-  return (
-    <>
-      <EpisodeBody
-        novelId={novelId} episodeId={episodeId}
-        onClickWikipedia={openWikipedia} onClickNote={openNote}
-      />
-      <ModalDialog isOpen={dialogOpenState} onClosing={closingDialogEvent}>
-        { wikipediaVisible && <WikipediaSummary title={wikipediaTitleState}/> }
-        { noteVisible && <NoteSummary novelId={novelId} noteId={noteIdState}/> }          
-      </ModalDialog> 
-    </>
-  );
 }

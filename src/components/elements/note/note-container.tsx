@@ -9,8 +9,10 @@ import parse, {DOMNode, domToReact} from 'html-react-parser';
 import { getNoteDataPath } from '@/libs/util'
 import Loading from '@/components/elements/loading/loading'
 import LoadError from '@/components/elements/loading/load-error'
+import AnimatePage from '@/components/elements/animate-page'
+import ContentsBody from '@/components/elements/contents/contents-body'
 
-export default function NoteBody({
+export default function NoteContainer({
   novelId,
   noteId,
 } : {
@@ -49,17 +51,19 @@ export default function NoteBody({
   } else if (!data) {
     return ( <LoadError /> );
   } else {
+    const body = data.summary + data.body;
+    
     return (
-      <div className="flex flex-col h-full">
-        <div className="text-center mb-6">
-          <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
+      <AnimatePage>
+        <div className="flex flex-col h-full">
+          <div className="text-center mb-6">
+            <h1 className="font-bold sm:text-2xl ">{data.title}</h1>
+          </div>
+          <div className="flex-1 leading-loose">
+            <ContentsBody body={body} novelId={novelId}/>
+          </div>
         </div>
-        <div className="flex-1 leading-loose">
-          {parse(data.summary, {replace})}
-          <br/>
-          {parse(data.body, {replace})}
-        </div>
-      </div>
+      </AnimatePage>
     );
   }
 } 
