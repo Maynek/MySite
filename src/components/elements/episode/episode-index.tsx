@@ -3,25 +3,8 @@
 // This software is released under the MIT License.
 //--------------------------------
 import Link from 'next/link'
-import { getEpisodeSitePath, getGlossarySitePath, getIndexDataPath } from '@/libs/util'
+import { episode, chapter, getEpisodeSitePath, getGlossarySitePath, getIndexData } from '@/libs/util'
 import LoadError from '@/components/elements/loading/load-error'
-
-type episode = {
-  id:string;
-  title: string;
-}
-
-type chapter = {
-  id: string;
-  title: string;
-  episodes: Array<episode>;
-}
-
-async function getIndexData(novelId:string) {
-  const path = getIndexDataPath(novelId);
-  const res = await fetch(path);
-  return res.json();
-}
 
 export default async function EpisodeIndex({
   novelId

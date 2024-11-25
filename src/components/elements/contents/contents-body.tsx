@@ -5,6 +5,7 @@
 'use client'
 import { useState }  from "react";
 import parse, {DOMNode, domToReact} from 'html-react-parser';
+import {SWRProvider} from '@/components/elements/swr-provider'
 import ModalDialog from '@/components/elements/modal-dialog'
 import WikipediaSummary from '@/components/elements/wikipedia-summary'
 import NoteSummary from '@/components/elements/note/note-summary'
@@ -96,13 +97,13 @@ export default function ContentsBody({
   }
 
   return (
-    <>
-    {parse(body, {replace})}
+    <SWRProvider>
+      {parse(body, {replace})}
       <ModalDialog isOpen={dialogOpenState} onClosing={closingDialogEvent}>
         { wikipediaVisible && <WikipediaSummary title={wikipediaTitleState}/> }
         { noteVisible && <NoteSummary novelId={novelId} noteId={noteIdState}/> }          
       </ModalDialog>
-    </>
-    );
-  }
+    </SWRProvider>
+  );
+}
  

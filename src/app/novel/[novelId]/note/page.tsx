@@ -2,7 +2,6 @@
 // © Ada Maynek 2024
 // This software is released under the MIT License.
 //--------------------------------
-import {SWRProvider} from '@/components/elements/swr-provider'
 import NoteGlossary from '@/components/elements/note/note-glossary'
 
 export default function IndexPage({
@@ -13,8 +12,6 @@ export default function IndexPage({
   }
 }>) {
   return (
-    <SWRProvider>
-      <NoteGlossary novelId={params.novelId}/>
-    </SWRProvider>
+    <NoteGlossary novelId={params.novelId}/>
   );
 }

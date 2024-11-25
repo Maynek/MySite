@@ -3,7 +3,6 @@
 // This software is released under the MIT License.
 //--------------------------------
 import EpisodeIndex from '@/components/elements/episode/episode-index'
-import {SWRProvider} from '@/components/elements/swr-provider'
 
 export default function IndexPage({
   params,
@@ -13,8 +12,6 @@ export default function IndexPage({
   }
 }>) {
   return (
-    <SWRProvider>
-      <EpisodeIndex novelId={params.novelId}/>
-    </SWRProvider>
+    <EpisodeIndex novelId={params.novelId}/>
   );
 }
