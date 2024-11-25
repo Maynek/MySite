@@ -5,20 +5,21 @@
 import { getGlossaries } from '@/libs/util'
 import NoteGlossary from '@/components/elements/note/note-glossary'
 
+type Params = Promise<{novelId: string}>;
+
 export const dynamicParams = false;
 export async function generateStaticParams() {
   const data = await getGlossaries();
   return data;
 }
 
-export default function IndexPage({
+export default async function IndexPage({
   params,
 }: Readonly<{
-  params: {
-    novelId: string
-  }
+  params: Params
 }>) {
+  const {novelId}  = await params;
   return (
-    <NoteGlossary novelId={params.novelId}/>
+    <NoteGlossary novelId={novelId}/>
   );
 }

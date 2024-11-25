@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	experimental: {
-		scrollRestoration: true
-	},
+	//output: 'export',
     images: {
 		remotePatterns:[
 			{
@@ -10,6 +8,9 @@ const nextConfig = {
 				hostname: 'images.microcms-assets.io'
 			}
 		]
+	},
+	experimental: {
+		scrollRestoration: true
 	},
 };
 export default nextConfig;

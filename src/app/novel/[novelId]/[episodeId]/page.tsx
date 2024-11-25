@@ -5,24 +5,24 @@
 import { getEpisodes } from '@/libs/util'
 import EpisodeContainer from '@/components/elements/episode/episode-container'
 
+type Params = Promise<{novelId: string, episodeId: string }>;
+
 export const dynamicParams = false;
 export async function generateStaticParams() {
   const data = await getEpisodes();
   return data;
 }
 
-export default function EpisodePage({
+export default async function EpisodePage({
   params,
 }: Readonly<{
-  params: {
-    novelId: string
-    episodeId: string  
-  }
+  params: Params
 }>) {
+  const {novelId, episodeId}  = await params;
   return (
     <EpisodeContainer
-      novelId={params.novelId}
-      episodeId={params.episodeId}
+      novelId={novelId}
+      episodeId={episodeId}
     />
   );
 }

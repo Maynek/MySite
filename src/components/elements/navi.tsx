@@ -12,9 +12,6 @@ export default function Navi({}) {
               <Link href="/">Home</Link>
             </li>
             <li className="mr-2 hover:text-sky-600">
-              <Link href="/blog">Blog</Link>
-            </li>
-            <li className="mr-2 hover:text-sky-600">
               <Link href="/about">About</Link>
             </li>
           </ul>
