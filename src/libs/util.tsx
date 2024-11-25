@@ -12,7 +12,9 @@ const BASE_INDEX_DATA_PATH: string    = BASE_DATA_URL + '[novelId]/_index.json';
 const BASE_EPISODE_DATA_PATH: string  = BASE_DATA_URL + '[novelId]/[episodeId].json';
 const BASE_GLOSSARY_DATA_PATH: string = BASE_DATA_URL + '[novelId]/note/_glossary.json';
 const BASE_NOTE_DATA_PATH: string     = BASE_DATA_URL + '[novelId]/note/[noteId].json';
+const BASE_INDEXES_PATH: string       = BASE_DATA_URL + 'indexes.json';
 const BASE_EPISODES_PATH: string      = BASE_DATA_URL + 'episodes.json';
+const BASE_GLOSSARIES_PATH: string    = BASE_DATA_URL + 'glossaries.json';
 const BASE_NOTES_PATH: string         = BASE_DATA_URL + 'notes.json';
 
 export type episode = {
@@ -84,8 +86,16 @@ export const getNoteDataPath = (
   return BASE_NOTE_DATA_PATH.replace('[novelId]', novelId).replace('[noteId]', noteId);
 };
 
+export const getIndexesPath = () => {
+  return BASE_INDEXES_PATH;
+}
+
 export const getEpisodesPath = () => {
   return BASE_EPISODES_PATH;
+}
+
+export const getGlossariesPath = () => {
+  return BASE_GLOSSARIES_PATH;
 }
 
 export const getNotesPath = () => {
@@ -98,8 +108,20 @@ export async function getIndexData(novelId:string) {
   return data;
 }
 
+export async function getIndexes() {
+  const path = getIndexesPath();
+  const data = await fetch(path).then((res) => res.json());
+  return data;
+}
+
 export async function getEpisodes() {
   const path = getEpisodesPath();
+  const data = await fetch(path).then((res) => res.json());
+  return data;
+}
+
+export async function getGlossaries() {
+  const path = getGlossariesPath();
   const data = await fetch(path).then((res) => res.json());
   return data;
 }
