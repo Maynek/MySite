@@ -5,7 +5,7 @@
 import { getGlossaries } from '@/libs/util'
 import NoteGlossary from '@/components/elements/note/note-glossary'
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 export async function generateStaticParams() {
   const data = await getGlossaries();
   return data;

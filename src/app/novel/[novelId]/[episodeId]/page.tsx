@@ -5,7 +5,7 @@
 import { getEpisodes } from '@/libs/util'
 import EpisodeContainer from '@/components/elements/episode/episode-container'
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 export async function generateStaticParams() {
   const data = await getEpisodes();
   return data;

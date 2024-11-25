@@ -5,7 +5,7 @@
 import { getIndexes } from '@/libs/util'
 import EpisodeIndex from '@/components/elements/episode/episode-index'
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 export async function generateStaticParams() {
   const data = await getIndexes();
   return data;

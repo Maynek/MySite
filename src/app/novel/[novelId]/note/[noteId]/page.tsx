@@ -5,7 +5,7 @@
 import { getNotes } from '@/libs/util'
 import NoteContainer from '@/components/elements/note/note-container'
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 export async function generateStaticParams() {
   const data = await getNotes();
   return data;
