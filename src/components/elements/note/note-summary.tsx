@@ -40,6 +40,7 @@ export default function NotesvelSummary({
           <Link
             className="px-2 py-1 bg-sky-600 text-white font-semibold rounded hover:bg-sky-700"
             href={getNoteSitePath(novelId, noteId)}
+            target='_blank'
           >
             詳細を読む
           </Link>

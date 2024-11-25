@@ -5,6 +5,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
+import FrozenRoute from '@/components/elements/FrozenRoute'
 
 export default function MotionWrapper({
   children,
@@ -14,7 +15,7 @@ export default function MotionWrapper({
   const pathName = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
       <motion.div
         key={pathName}
         initial={{ opacity: 0 ,filter: "blur(5px)",}}
@@ -22,7 +23,7 @@ export default function MotionWrapper({
         exit={{ opacity: 0, filter: "blur(5px)" }}
         transition={{ duration: 0.5 }}
       >
-        {children}
+        <FrozenRoute>{children}</FrozenRoute>
       </motion.div>
     </AnimatePresence>
   )

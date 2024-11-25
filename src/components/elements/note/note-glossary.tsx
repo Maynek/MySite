@@ -2,13 +2,9 @@
 // © Ada Maynek 2024
 // This software is released under the MIT License.
 //--------------------------------
-'use client'
 import Link from 'next/link'
-import useSWR from 'swr';
 import { getNoteSitePath, getGlossaryDataPath } from '@/libs/util'
-import Loading from '@/components/elements/loading/loading'
 import LoadError from '@/components/elements/loading/load-error'
-import AnimatePage from '@/components/elements/animate-page'
 
 type note = {
   id:string;
@@ -21,23 +17,24 @@ type tab = {
   notes: Array<note>;
 }
 
+async function getGlossaryData(novelId:string) {
+  const path = getGlossaryDataPath(novelId);
+  const res = await fetch(path);
+  return res.json();
+}
 
-export default function NoteGlossary({
+export default async function NoteGlossary({
   novelId
 } : {
   novelId: string
 }) {
-  const path = getGlossaryDataPath(novelId);
-  const {data, error, isLoading} = useSWR(path);
-  let id:string;
+  const data = await getGlossaryData(novelId);
 
-  if (isLoading) {
-    return ( <Loading /> );
-  } else if (!data) {
+  if (!data) {
     return ( <LoadError /> );
   } else {
     return (
-      <AnimatePage>
+      <>
         <div className="mt-4 mb-8 text-center">
           <h1 className="font-bold mb-1 sm:text-2xl">{data.title}</h1>
         </div>
@@ -53,14 +50,14 @@ export default function NoteGlossary({
                       hover:text-red-600 hover:underline
                     `}
                   >
-                    <Link href={getNoteSitePath(novelId, id)}>{title}</Link>
+                    <Link href={getNoteSitePath(novelId, id)} scroll={false}>{title}</Link>
                   </li>
                 ))}
               </ul>
             </li>
           ))}
         </ul>
-      </AnimatePage>
+      </>
     );
   }
 } 

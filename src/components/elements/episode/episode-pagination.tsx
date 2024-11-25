@@ -16,13 +16,13 @@ export default function EpisodePagination({
   return (
     <div className="flex text-sm">
       <div className="flex-1 text-center text-sky-600 no-underline hover:text-red-600">
-        {prevPath ? <Link href={prevPath}>＜ 前へ</Link> : <></>}
+        {prevPath ? <Link href={prevPath} scroll={false}>＜ 前へ</Link> : <></>}
       </div>
       <div className="flex-1 text-center text-sky-600 no-underline hover:text-red-600">
-        <Link href={indexPath}>目次</Link>
+        <Link href={indexPath} scroll={false}>目次</Link>
       </div>
       <div className="flex-1 text-center text-sky-600 no-underline hover:text-red-600">
-        {nextPath ? <Link href={nextPath}>次へ ＞</Link> : <></>}
+        {nextPath ? <Link href={nextPath} scroll={false}>次へ ＞</Link> : <></>}
       </div>
     </div>
     

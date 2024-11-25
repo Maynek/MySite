@@ -2,13 +2,9 @@
 // © Ada Maynek 2024
 // This software is released under the MIT License.
 //--------------------------------
-'use client'
 import Link from 'next/link'
-import useSWR from 'swr';
 import { getEpisodeSitePath, getGlossarySitePath, getIndexDataPath } from '@/libs/util'
-import Loading from '@/components/elements/loading/loading'
 import LoadError from '@/components/elements/loading/load-error'
-import AnimatePage from '@/components/elements/animate-page'
 
 type episode = {
   id:string;
@@ -21,23 +17,25 @@ type chapter = {
   episodes: Array<episode>;
 }
 
+async function getIndexData(novelId:string) {
+  const path = getIndexDataPath(novelId);
+  const res = await fetch(path);
+  return res.json();
+}
 
-export default function EpisodeIndex({
+export default async function EpisodeIndex({
   novelId
 } : {
   novelId: string
 }) {
-  const path = getIndexDataPath(novelId);
-  const {data, error, isLoading} = useSWR(path);
+  const data = await getIndexData(novelId);
   let id:string;
 
-  if (isLoading) {
-    return ( <Loading /> );
-  } else if (!data) {
+  if (!data) {
     return ( <LoadError /> );
   } else {
     return (
-      <AnimatePage>
+      <>
         <div className="mt-4 mb-8 text-center">
           <h1 className="font-bold mb-1 sm:text-2xl">{data.maintitle}</h1>
           <h2 className="font-bold sm:text-xl">{data.subtitle}</h2>
@@ -55,7 +53,7 @@ export default function EpisodeIndex({
                       hover:text-red-600 hover:underline
                     `}
                   >
-                    <Link href={getEpisodeSitePath(novelId, id)}>{title}</Link>
+                    <Link href={getEpisodeSitePath(novelId, id)} scroll={false}>{title}</Link>
                   </li>
                 ))}
               </ul>
@@ -65,11 +63,11 @@ export default function EpisodeIndex({
         {data.glossary && (
           <ul className="mb-8">
             <li className="text-sky-600 no-underline hover:text-red-600 hover:underline">
-              <Link href={getGlossarySitePath(novelId)}>{data.glossary}</Link>
+              <Link href={getGlossarySitePath(novelId)} scroll={false}>{data.glossary}</Link>
             </li>
           </ul>          
         )}
-      </AnimatePage>
+      </>
     );
   }
 } 

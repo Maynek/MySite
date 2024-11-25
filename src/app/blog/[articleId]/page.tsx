@@ -4,7 +4,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import parse from "html-react-parser";
 import styles from "@/styles/blog.module.css"
-import AnimatePage from '@/components/elements/animate-page'
 
 type Props = {
 	params: { articleId: string };
@@ -25,7 +24,7 @@ export default async function Article(props: Props) {
     notFound();
   }
   return (
-    <AnimatePage>
+    <>
 	    <div className={styles.head}>
         <Image
           src={article.eyecatch?.url ?? "/no-image.png"}
@@ -41,6 +40,6 @@ export default async function Article(props: Props) {
       <div className={styles.article}>
         {parse(article.content)}
 	    </div>
-    </AnimatePage>
+    </>
   );
 }
